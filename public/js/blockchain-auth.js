@@ -17,12 +17,11 @@ const blockchain_auth = {
       console.log("Web3 init")
       return blockchain_auth.initContract();
   },
-  initContract: function () {
-      $.getJSON("auth.json", function (blockauth) {
-          blockauth.contracts.auth = TruffleContract(blockauth);
-          blockauth.contracts.auth.setProvider(blockchain_auth.web3Provider);
-      });
-      console.log("contract init")
+  initContract: async function () {
+      let blockauth = await $.getJSON("Auth.json");
+      blockchain_auth.contracts.auth = await TruffleContract(blockauth);
+      blockchain_auth.contracts.auth.setProvider(blockchain_auth.web3Provider);
+      console.log(blockchain_auth.contracts)
   },
   registerDevice: function(keySSH){
     blockchain_auth.contracts.auth.deployed().then(function (instance) {
