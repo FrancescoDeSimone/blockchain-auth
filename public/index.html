@@ -47,13 +47,6 @@
     <nav class="navbar">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a
-            href="javascript:void(0);"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#navbar-collapse"
-            aria-expanded="false"
-          ></a>
           <a href="javascript:void(0);" class="bars"></a>
           <a class="navbar-brand" href="index.html">BLOCKCHAIN-AUTH</a>
         </div>
@@ -68,7 +61,7 @@
       <aside id="leftsidebar" class="sidebar">
         <!-- Menu -->
         <div class="menu">
-          <ul class="list" id="messages">
+          <ul class="list" id="deviceslist">
             <li class="header">DEVICES LIST</li>
           </ul>
         </div>
@@ -105,19 +98,21 @@
     <script src="plugins/morrisjs/morris.js"></script>
 
     <!-- Custom Js -->
+    <script src="js/web3.min.js"></script>
     <script src="js/admin.js"></script>
-
-    <script src="js/blockchain-auth.js"></script>
-    <script> window.onload = blockchain_auth.initWeb3()</script>
+    <script src="js/utility.js"></script>
 
     <script>
       $(function() {
         var socket = io();
+        socket.on('disconnect',()=>{
+          $("#deviceslist").empty();
+        });
         socket.on("devices", function(msg) {
           devices = JSON.parse(msg);
-          $("#messages").append($("<li>").append(
+          $("#deviceslist").append($("<li>").append(
            `
-              <a class=" waves-effect waves-block">
+              <a onclick="registerDevice('${devices.addresses[0]}')" class=" waves-effect waves-block">
                 <i class="material-icons">dvr</i>
                   <span>${devices.addresses[0]}</span>
               </a>
