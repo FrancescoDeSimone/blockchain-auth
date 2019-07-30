@@ -19,9 +19,9 @@ The securety is granted by the blockchain tecnology.
 The iot devices have to be configured with a free zero-configuration networking (like [avahi](https://www.avahi.org/)) and have a ssh service enable. Also each iot devices have to run the [server.js](https://github.com/FrancescoDeSimone/blockchain-auth/blob/master/server/server.js) in the server folder. 
 Blockchain-auth will search for every ssh devices in the network through mdns.  
  
-## Usage
+## Installation
 
-### On the iot devices
+### Iot devices
 - Install avahi
 
 - Copy the ssh service in the services folder
@@ -36,7 +36,7 @@ Blockchain-auth will search for every ssh devices in the network through mdns.
   
   ```node server.js```
 
-### On the client
+### Client side
 
 - Clone the repo
   
