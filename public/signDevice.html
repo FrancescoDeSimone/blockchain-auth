@@ -1,0 +1,59 @@
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+          ALLOW OR DENY SSH ACCESS
+          <small
+            >Select an address from the dropdown menu and enable/disable ssh
+            access</small
+          >
+        </h2>
+      </div>
+      <div class="body">
+        <div class="form-horizontal">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="form-line">
+                  <input
+                    id="accountText"
+                    type="text"
+                    class="form-control"
+                    placeholder="Wallet address"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="col-sm1-6">
+                <div class="switch">
+                  <label
+                    >OFF<input id="statusSSH" type="checkbox" checked /><span
+                      class="lever"
+                    ></span
+                    >ON</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm1-6">
+            <div class="text-right">
+              <button type="button" onClick="registrationSubmit()" class="btn bg-light-green waves-effect">
+                Submit
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function registrationSubmit(){
+    let addrs = $("#accountText").val();
+    if($("#statusSSH").is(':checked'))
+      registerDevice(addrs,ipClick);
+    else
+      removeDevice(addrs,ipClick);
+  }
+</script>

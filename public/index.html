@@ -19,6 +19,7 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link href="plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
     <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="plugins/node-waves/waves.css" rel="stylesheet" />
     <link href="plugins/animate-css/animate.css" rel="stylesheet" />
@@ -51,7 +52,7 @@
           <a class="navbar-brand" href="index.html">BLOCKCHAIN-AUTH</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="nav navbar-nav navbar-right"></ul>
+          <a class="navbar-brand navbar-right" id="accountType"></a>
         </div>
       </div>
     </nav>
@@ -71,7 +72,11 @@
     </section>
 
     <section class="content">
-      <div class="container-fluid"></div>
+      <div class="container-fluid">
+        <div id="appContent">
+
+        </div>
+      </div>
     </section>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
@@ -101,25 +106,7 @@
     <script src="js/web3.min.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/utility.js"></script>
-
-    <script>
-      $(function() {
-        var socket = io();
-        socket.on('disconnect',()=>{
-          $("#deviceslist").empty();
-        });
-        socket.on("devices", function(msg) {
-          devices = JSON.parse(msg);
-          $("#deviceslist").append($("<li>").append(
-           `
-              <a onclick="registerDevice('${devices.addresses[0]}')" class=" waves-effect waves-block">
-                <i class="material-icons">dvr</i>
-                  <span>${devices.addresses[0]}</span>
-              </a>
-          `
-          ))
-        });
-      });
-    </script>
+    <script>window.ethereum.on('accountsChanged',() =>{ window.location.href="index.html" });</script>
+    <script>var ipClick = 0;loadPage()</script>
   </body>
 </html>

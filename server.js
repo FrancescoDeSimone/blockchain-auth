@@ -16,6 +16,7 @@ const blockauth   = contract(contractJSON);
 blockauth.setProvider(provider);
 
 io.on("connection", function(socket) {
+  console.log("connection")
   let browser = mdns.createBrowser();
   browser.on("ready", () => {
     browser.discover();
@@ -37,7 +38,7 @@ app.get("/", function(req, res) {
 
 app.post("/verifyDevice", function(req, res) {
   blockauth.deployed().then(function(instance) {
-    return instance.verifyDevice(req.body.passwd, {from: req.body.account})
+    return instance.verifyDevice(req.body.mac, {from: req.body.account})
   }).then(
     result => res.send(result),
     error => console.log(error)
@@ -46,7 +47,27 @@ app.post("/verifyDevice", function(req, res) {
 
 app.post("/registerDevice", function(req, res) {
   blockauth.deployed().then(function(instance) {
-    return instance.registerDevice(req.body.passwd,{from: req.body.account})
+    console.log("DEBUG",req.body.addrs,req.body.mac);
+    return instance.authDevice(req.body.addrs,req.body.mac,true,{from: req.body.account})
+  }).then(
+    result => res.send(result),
+    error => console.log(error)
+    )
+});
+
+
+app.post("/removeDevice", function(req, res) {
+  blockauth.deployed().then(function(instance) {
+    return instance.authDevice(req.body.addrs,req.body.mac,false,{from: req.body.account})
+  }).then(
+    result => res.send(result),
+    error => console.log(error)
+    )
+});
+
+app.post("/isOwner", function(req, res) {
+  blockauth.deployed().then(function(instance) {
+    return instance.isOwner({from: req.body.account})
   }).then(
     result => res.send(result),
     error => console.log(error)

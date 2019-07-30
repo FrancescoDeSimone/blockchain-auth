@@ -5,12 +5,16 @@ contract Auth is Migrations {
 
     mapping (address=>mapping(string=>bool)) private authTable;
 
-    function registerDevice(string memory sshKey) public restricted returns(bool) {
-        authTable[address(this)][sshKey] = true;
-        return authTable[address(this)][sshKey];
+    function authDevice(address addrs, string memory macAddress,bool status) public restricted returns(bool) {
+        authTable[addrs][macAddress] = status;
+        return authTable[addrs][macAddress];
+    }
+    
+    function verifyDevice(string memory macAddress) public view returns (bool) {
+        return authTable[msg.sender][macAddress];
     }
 
-    function verifyDevice(string memory sshKey) public view returns (bool) {
-        return authTable[address(this)][sshKey];
+    function isOwner() public view returns (bool) {
+        return owner == msg.sender;
     }
 }

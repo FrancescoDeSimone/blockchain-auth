@@ -1,0 +1,21 @@
+<div class="row clearfix">
+  <div class="card">
+    <div class="header">
+      <h2>SSH CONSOLE <small id="textsmall"></small></h2>
+    </div>
+    <div class="body">
+      <div id="contentSSH"></div>
+    </div>
+  </div>
+</div>
+<script>
+  $("#textsmall").text("ssh console for " + ipClick);
+  verifyDevice(ipClick, (permission) => {
+    console.log(permission)
+    if(permission == "true"){
+      $("#contentSSH").load("sshSession.html");
+    }
+    else
+      $("#contentSSH").load("permissionError.html");
+  });
+</script>
