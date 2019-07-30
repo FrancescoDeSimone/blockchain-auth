@@ -7,7 +7,7 @@ app.use(cors())
 console.log(addr)
 
 app.get('/', function (req, res) {
-  res.send(addr.eth0.mac);
+	res.send(addr.eth0.mac || addr.wlan0.mac);
 });
 
 
