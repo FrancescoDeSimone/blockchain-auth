@@ -1,0 +1,17 @@
+{
+  "name": "WebSSH",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.12.3",
+    "node-macaddress": "^0.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Jakub Mandula<jakub.aludnam@gmail.com",
+  "license": "MIT"
+}
