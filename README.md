@@ -16,14 +16,35 @@ The securety is granted by the blockchain tecnology.
  - [Truffle suite](https://www.trufflesuite.com/docs/truffle/overview)
  - [MetaMask](https://metamask.io/)
  
-The iot devices have to be configured with a free zero-configuration networking (like [avahi](https://www.avahi.org/)) and have a ssh service enable.
+The iot devices have to be configured with a free zero-configuration networking (like [avahi](https://www.avahi.org/)) and have a ssh service enable. Also each iot devices have to run the [server.js](https://github.com/FrancescoDeSimone/blockchain-auth/blob/master/server/server.js) in the server folder. 
 Blockchain-auth will search for every ssh devices in the network through mdns.  
  
 ## Usage
 
-- Clone the repo
+### On the iot devices
+- Install avahi
 
+- Copy the ssh service in the services folder
+  
+  ```cp /usr/share/doc/avahi/ssh.service /etc/avahi/services/```
+
+- Copy the [server](https://github.com/FrancescoDeSimone/blockchain-auth/tree/master/server) folder and install the dependencies
+  
+  ```npm install```
+
+- Run the server
+  
+  ```node server.js```
+
+### On the client
+
+- Clone the repo
+  
   ```git clone https://github.com/FrancescoDeSimone/blockchain-auth```
+
+- Install the dependencies 
+  
+  ```npm install```
 
 - Open ganache
 
