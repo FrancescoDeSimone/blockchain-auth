@@ -7,7 +7,7 @@ This project is made for the IoT Data Analytics course at University of Salerno.
 **Blockchain-auth** allows you to use your ethereum wallet to manage all your iot devices. 
 Blockchain-auth is an access control system whom live on the ethereum blockchain.
 The aim of blockchain-auth is to pair an iot devices with an ethereum account. 
-The access to a iot device is allow only if a pair procedure is made by an administrator.
+The access to a iot device is allowed only if a pair procedure is made by an administrator.
 The securety is granted by the blockchain tecnology.
 
 ## Requirements
